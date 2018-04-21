@@ -6,16 +6,26 @@ using System.Threading.Tasks;
 
 namespace Day6LetsReview
 {
-    class Program
+    class Solution
     {
         static void Main(string[] args)
         {
             int n = Convert.ToInt32(Console.ReadLine());
-            string str1 = Console.ReadLine();
-            string str2 = Console.ReadLine();
-            Program p = new Program();
-            Console.WriteLine(p.ProcessString(str1));
-            Console.WriteLine(p.ProcessString(str2));
+            string[] strarray = new string[n];
+            
+
+            for (int i = 0; i < n; i++)
+            {
+                string strinput = Console.ReadLine();
+                strarray[i] += strinput;
+            }
+
+            Solution s = new Solution();
+            for(int i = 0; i < n; i++)
+            {
+                //Console.WriteLine(strarray[i]);
+                Console.WriteLine(s.ProcessString(strarray[i]));
+            }
 
             Console.ReadLine();
             /* Sample Input
@@ -31,20 +41,28 @@ namespace Day6LetsReview
 
         string ProcessString(string str)
         {
+            
             char[] arr;
             string strodd = string.Empty;
             string streven = string.Empty;
 
             arr = str.ToCharArray(0, str.Length);
 
-            for (int i = 0; i <= str.Length - 2; i = i + 2)
+            for (int i = 0; i < str.Length; i++)
             {
-                streven += arr[i];
+                if (i % 2 == 0)
+                {
+                    streven += arr[i];
+                }
+                    
             }
 
-            for (int i = 1; i <= str.Length - 1; i = i + 2)
+            for (int i = 1; i < str.Length; i++)
             {
-                strodd += arr[i];
+                if (i % 2 == 1)
+                {
+                    strodd += arr[i];
+                }
             }
 
             return streven + " " + strodd;
