@@ -21,7 +21,8 @@ namespace Day8DictionariesandMaps
                 string strinput = Console.ReadLine();
                 var ds = (from w in strinput.Split()
                             select w);
-                phoneBook.Add(ds.FirstOrDefault(), ds.ElementAt(1));
+                phoneBook.Add(!string.IsNullOrEmpty(ds.FirstOrDefault())? ds.FirstOrDefault() : "",
+                              !string.IsNullOrEmpty(ds.ElementAt(1)) ? ds.ElementAt(1) : "");
             }
 
             if(phoneBook.Count ==  n)
