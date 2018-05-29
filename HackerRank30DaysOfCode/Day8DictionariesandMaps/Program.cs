@@ -12,44 +12,29 @@ namespace Day8DictionariesandMaps
         static void Main(string[] args)
         {
 
+            Dictionary<String, String> PhoneBook = new Dictionary<String, String>();
             int n = Convert.ToInt32(Console.ReadLine());
-            string[] strarray = new string[n];
-            Dictionary<string, string> phoneBook = new Dictionary<string, string>();
 
             for (int i = 0; i < n; i++)
             {
-                string strinput = Console.ReadLine();
-                var ds = (from w in strinput.Split()
-                            select w);
-                phoneBook.Add(!string.IsNullOrEmpty(ds.FirstOrDefault())? ds.FirstOrDefault() : "",
-                              !string.IsNullOrEmpty(ds.ElementAt(1)) ? ds.ElementAt(1) : "");
+                var s = Console.ReadLine().Split(' ');
+                PhoneBook.Add(s[0], s[1]);
             }
 
-            if(phoneBook.Count ==  n)
+            String name;
+
+            while ((name = Console.ReadLine()) != null)
             {
-                for (int i = 0; i < n; i++)
+                try
                 {
-                    string strinput = Console.ReadLine();
-                    strarray[i] += strinput;
+                    Console.WriteLine($"{name}={PhoneBook[name]}");
                 }
-            }
-
-
-            foreach (string name in strarray)
-            {                
-                if (phoneBook.ContainsKey(name))
-                {
-                    string phonenumber = string.Empty;
-                    phoneBook.TryGetValue(name, out phonenumber);
-                    Console.WriteLine(name + "=" + phonenumber);
-                }
-                else
+                catch
                 {
                     Console.WriteLine("Not found");
                 }
             }
 
-            Console.ReadLine();
 
             /* 
             Sample Input
